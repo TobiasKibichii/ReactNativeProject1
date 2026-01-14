@@ -13,7 +13,7 @@ import { Colors } from "@/constants/theme";
 
 import { Menu_Items } from "@/constants/MenuItems";
 import Menu_Images from "@/constants/MenuImages";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 
 import * as ImagePicker from "expo-image-picker";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
@@ -24,6 +24,9 @@ import Animated, { LinearTransition } from "react-native-reanimated";
 import { ThemeContext } from "@/context/ThemeContext";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from "@expo/vector-icons/Feather";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StatusBar } from "expo-status-bar";
 
 export default function MenuScreen() {
   const [menus, setMenus] = useState(Menu_Items);
@@ -37,13 +40,44 @@ export default function MenuScreen() {
     Inter_500Medium_Italic,
   });
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const jsonValue = await AsyncStorage.getItem("MenusApp");
+        const storageMenus = jsonValue != null ? JSON.parse(jsonValue) : null;
+
+        if (storageMenus && storageMenus.length) {
+          setMenus(storageMenus.sort((a, b) => b.id - a.id));
+        } else {
+          setMenus(Menu_Items.sort((a, b) => b.id - a.id));
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    };
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    const storeData = async () => {
+      try {
+        const jsonValue = JSON.stringify(menus);
+        await AsyncStorage.setItem("MenusApp", jsonValue);
+      } catch (e) {
+        console.error(e);
+      }
+    };
+
+    storeData();
+  }, [menus]);
+
   if (!loaded && !error) {
     return null;
   }
 
   const styles = createStyles(theme, colorScheme);
 
-  const receivedMenu = Menu_Items.sort((a, b) => b.id - a.id);
+  const receivedMenu = [...menus].sort((a, b) => b.id - a.id);
 
   const pickImage = async () => {
     const results = await ImagePicker.launchImageLibraryAsync({
@@ -57,7 +91,7 @@ export default function MenuScreen() {
 
   const addAntique = () => {
     if (title.trim()) {
-      const newId = receivedMenu.length > 0 ? Menu_Items[0].id + 1 : 1;
+      const newId = receivedMenu.length > 0 ? receivedMenu[0].id + 1 : 1;
       const result = [
         {
           id: newId,
@@ -149,7 +183,7 @@ export default function MenuScreen() {
       <Animated.FlatList
         data={menus}
         renderItem={renderItem}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => item.id.toString()}
         contentContainerStyle={{ flexGrow: 1 }}
         itemLayoutAnimation={LinearTransition}
         keyboardDismissMode="on-drag"
@@ -179,6 +213,8 @@ export default function MenuScreen() {
           />
         )}
       </Pressable>
+
+      <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
     </SafeAreaView>
   );
 }
