@@ -27,6 +27,7 @@ import Feather from "@expo/vector-icons/Feather";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { StatusBar } from "expo-status-bar";
+import { useRouter } from "expo-router";
 
 export default function MenuScreen() {
   const [menus, setMenus] = useState(Menu_Items);
@@ -35,6 +36,8 @@ export default function MenuScreen() {
   const [image, setImage] = useState(null);
 
   const { colorScheme, setColorScheme, theme } = useContext(ThemeContext);
+
+  const router = useRouter();
 
   const [loaded, error] = useFonts({
     Inter_500Medium_Italic,
@@ -49,7 +52,7 @@ export default function MenuScreen() {
         if (storageMenus && storageMenus.length) {
           setMenus(storageMenus.sort((a, b) => b.id - a.id));
         } else {
-          setMenus(Menu_Items.sort((a, b) => b.id - a.id));
+          setMenus([...Menu_Items].sort((a, b) => b.id - a.id));
         }
       } catch (e) {
         console.error(e);
@@ -121,32 +124,41 @@ export default function MenuScreen() {
     setMenus(menus.filter((menus) => menus.id !== id));
   };
 
+  const handlePress = (id) => {
+    router.push(`/menus/${id}`);
+  };
+
   const renderItem = ({ item }) => {
     return (
-      <View style={styles.antiqueItems}>
-        <View style={styles.antiqueText}>
-          <Text
-            style={[
-              styles.antiqueItemTitle,
-              item.verified && styles.antiqueVerified,
-            ]}
-            onPress={() => toggleAntique(item.id)}
-          >
-            {item.title}
-          </Text>
-          <Text style={styles.antiqueItemDesc}>{item.description}</Text>
-        </View>
-        <Image source={{ uri: item.image }} style={styles.antiqueImage} />
+      <View>
         <Pressable
-          style={styles.antiqueItemButton}
-          onPress={() => deleteAntique(item.id)}
+          style={styles.antiqueItems}
+          onPress={() => handlePress(item.id)}
         >
-          <MaterialIcons
-            name="delete-outline"
-            size={36}
-            color="red"
-            selectable={undefined}
-          />
+          <View style={styles.antiqueText}>
+            <Text
+              style={[
+                styles.antiqueItemTitle,
+                item.verified && styles.antiqueVerified,
+              ]}
+              onLongPress={() => toggleAntique(item.id)}
+            >
+              {item.title}
+            </Text>
+            <Text style={styles.antiqueItemDesc}>{item.description}</Text>
+          </View>
+          <Image source={{ uri: item.image }} style={styles.antiqueImage} />
+          <Pressable
+            style={styles.antiqueItemButton}
+            onPress={() => deleteAntique(item.id)}
+          >
+            <MaterialIcons
+              name="delete-outline"
+              size={36}
+              color="red"
+              selectable={undefined}
+            />
+          </Pressable>
         </Pressable>
       </View>
     );
@@ -159,6 +171,7 @@ export default function MenuScreen() {
           style={styles.input}
           placeholder="Title"
           placeholderTextColor="gray"
+          maxLength={30}
           value={title}
           onChangeText={setTitle}
         />
@@ -166,6 +179,7 @@ export default function MenuScreen() {
           style={styles.input}
           placeholder="Description"
           placeholderTextColor="gray"
+          maxLength={100}
           value={description}
           onChangeText={setDescription}
         />

@@ -27,6 +27,7 @@ export default function RootLayout() {
           <Stack.Screen name = 'menu' options = {{ headerShown:true, title: 'Menu', headerTitle: 'Antique Menu Shop'}}/>
           <Stack.Screen name = 'menus' options = {{ headerShown:false, title: 'Menus', headerTitle: 'Add Religion Antique'}}/>
 
+          <Stack.Screen name ='menusRoute/[id]' />
           <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
         </Stack>
         
