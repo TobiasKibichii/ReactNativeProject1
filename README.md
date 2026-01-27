@@ -1,50 +1,35 @@
-# Welcome to your Expo app 👋
+<h2>📝 Notes CRUD Mobile App</h2>
+<p><strong>Offline-First Notes Management Application</strong></p>
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+<p><strong>🔎 Overview</strong></p>
+<p>
+A mobile-first notes application built with <strong>React Native</strong> that allows users to create, edit, and manage personal notes directly on their device. 
+The app emphasizes simplicity, performance, and offline reliability through persistent local storage.
+</p>
 
-## Get started
+<p><strong>💻 Tech Stack</strong></p>
+<ul>
+  <li>📱 Frontend: React Native</li>
+  <li>🧭 Navigation: React Navigation (dynamic routing)</li>
+  <li>💾 Storage: AsyncStorage (local persistence)</li>
+  <li>🖼️ Media: Image upload & preview</li>
+  <li>⚛️ State Management: React Hooks</li>
+</ul>
 
-1. Install dependencies
+<p><strong>⚙️ Core Functionalities</strong></p>
+<ul>
+  <li>✍️ Create Notes — Add notes with title, description, and image attachment.</li>
+  <li>✏️ Edit Notes — Update note content with real-time UI refresh.</li>
+  <li>🗑️ Delete Notes — Remove notes instantly with persistent storage update.</li>
+  <li>📂 Offline Storage — Notes remain available without internet connection.</li>
+  <li>🧭 Dynamic Navigation — Navigate between list, detail, and edit screens.</li>
+</ul>
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+<p><strong>🧠 What This Project Demonstrates</strong></p>
+<ul>
+  <li>🧩 Strong understanding of CRUD operations in mobile apps</li>
+  <li>📦 Efficient local data persistence using AsyncStorage</li>
+  <li>🔁 State synchronization between UI and storage</li>
+  <li>🎯 Clean component-based architecture</li>
+  <li>📱 Real-world mobile app UX patterns</li>
+</ul>
