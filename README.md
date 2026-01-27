@@ -25,11 +25,4 @@ The app emphasizes simplicity, performance, and offline reliability through pers
   <li>🧭 Dynamic Navigation — Navigate between list, detail, and edit screens.</li>
 </ul>
 
-<p><strong>🧠 What This Project Demonstrates</strong></p>
-<ul>
-  <li>🧩 Strong understanding of CRUD operations in mobile apps</li>
-  <li>📦 Efficient local data persistence using AsyncStorage</li>
-  <li>🔁 State synchronization between UI and storage</li>
-  <li>🎯 Clean component-based architecture</li>
-  <li>📱 Real-world mobile app UX patterns</li>
-</ul>
+
