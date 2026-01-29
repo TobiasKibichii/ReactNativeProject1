@@ -1,28 +1,28 @@
 import { useLocalSearchParams } from "expo-router";
 import {
-  View,
-  Text,
-  StyleSheet,
-  Pressable,
-  TextInput,
   Image,
+  Pressable,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 
-import { useState, useEffect, useContext } from "react";
-import { SafeAreaView } from "react-native-safe-area-context";
+import { Menu_Items } from "@/constants/MenuItems";
 import { ThemeContext } from "@/context/ThemeContext";
-import { StatusBar } from "expo-status-bar";
 import {
   Inter_500Medium,
   Inter_500Medium_Italic,
   useFonts,
 } from "@expo-google-fonts/inter";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useRouter } from "expo-router";
-import AntDesign from "@expo/vector-icons/AntDesign";
 import { Feather } from "@expo/vector-icons";
+import AntDesign from "@expo/vector-icons/AntDesign";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as ImagePicker from "expo-image-picker";
-import { Menu_Items } from "@/constants/MenuItems";
+import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
+import { useContext, useEffect, useState } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function EditScreen() {
   const { id } = useLocalSearchParams();
@@ -63,7 +63,7 @@ export default function EditScreen() {
 
       if (storageMenus && storageMenus.length) {
         const updatedMenus = storageMenus.map((item) =>
-          item.id === menu.id ? { ...menu } : item
+          item.id === menu.id ? { ...menu } : item,
         );
 
         await AsyncStorage.setItem("MenusApp", JSON.stringify(updatedMenus));
@@ -83,7 +83,7 @@ export default function EditScreen() {
       quality: 0.7,
     });
     if (!results.canceled) {
-      const uri = results[0].assets.uri;
+      const uri = results.assets[0].uri;
       setMenu((prev) => ({ ...prev, image: uri }));
     }
   };
@@ -99,30 +99,6 @@ export default function EditScreen() {
           value={menu?.title || ""}
           onChangeText={(text) => setMenu((prev) => ({ ...prev, title: text }))}
         />
-
-        <Pressable
-          onPress={() =>
-            setColorScheme(colorScheme === "dark" ? "light" : "dark")
-          }
-        >
-          {colorScheme === "dark" ? (
-            <Feather
-              name="moon"
-              size={36}
-              color={theme.text}
-              selectable={undefined}
-              style={{ width: 36 }}
-            />
-          ) : (
-            <AntDesign
-              name="sun"
-              size={36}
-              color={theme.text}
-              selectable={undefined}
-              style={{ width: 36 }}
-            />
-          )}
-        </Pressable>
 
         <TextInput
           style={styles.input}
@@ -155,6 +131,34 @@ export default function EditScreen() {
         </View>
       </View>
 
+      <Pressable
+        onPress={() =>
+          setColorScheme(colorScheme === "dark" ? "light" : "dark")
+        }
+        style={{
+          position: "fixed",
+          bottom: 0,
+        }}
+      >
+        {colorScheme === "dark" ? (
+          <Feather
+            name="moon"
+            size={36}
+            color={theme.text}
+            selectable={undefined}
+            style={{ width: 36 }}
+          />
+        ) : (
+          <AntDesign
+            name="sun"
+            size={36}
+            color={theme.text}
+            selectable={undefined}
+            style={{ width: 36 }}
+          />
+        )}
+      </Pressable>
+
       <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
     </SafeAreaView>
   );
@@ -166,6 +170,7 @@ function createStyles(theme, colorScheme) {
       flex: 1,
       width: "100%",
       backgroundColor: theme.background,
+      alignContent: "space-between",
     },
     inputContainer: {
       flexDirection: "column",

@@ -1,23 +1,19 @@
 import {
-  StyleSheet,
-  Appearance,
-  View,
-  Text,
   Image,
-  TextInput,
   Pressable,
-  FlatList,
+  StyleSheet,
+  Text,
+  TextInput,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Colors } from "@/constants/theme";
 
 import { Menu_Items } from "@/constants/MenuItems";
-import Menu_Images from "@/constants/MenuImages";
-import { useState, useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 
-import * as ImagePicker from "expo-image-picker";
-import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import { Inter_500Medium_Italic, useFonts } from "@expo-google-fonts/inter";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
+import * as ImagePicker from "expo-image-picker";
 
 import Animated, { LinearTransition } from "react-native-reanimated";
 
@@ -26,8 +22,8 @@ import AntDesign from "@expo/vector-icons/AntDesign";
 import Feather from "@expo/vector-icons/Feather";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { StatusBar } from "expo-status-bar";
 import { useRouter } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 
 export default function MenuScreen() {
   const [menus, setMenus] = useState(Menu_Items);
@@ -48,6 +44,7 @@ export default function MenuScreen() {
       try {
         const jsonValue = await AsyncStorage.getItem("MenusApp");
         const storageMenus = jsonValue != null ? JSON.parse(jsonValue) : null;
+        console.log("AsyncStorage" + jsonValue);
 
         if (storageMenus && storageMenus.length) {
           setMenus(storageMenus.sort((a, b) => b.id - a.id));
@@ -115,8 +112,8 @@ export default function MenuScreen() {
   const toggleAntique = (id) => {
     setMenus(
       menus.map((menu) =>
-        menu.id === id ? { ...menu, verified: !menu.verified } : menu
-      )
+        menu.id === id ? { ...menu, verified: !menu.verified } : menu,
+      ),
     );
   };
 
