@@ -25,4 +25,19 @@ The app emphasizes simplicity, performance, and offline reliability through pers
   <li>🧭 Dynamic Navigation — Navigate between list, detail, and edit screens.</li>
 </ul>
 
+<p><strong>🖼️ Screenshots</strong></p>
+
+   <p>Home Page </p>
+  <img src="screenshots/Screenshot (302).png" alt="Home Page" title ='Home Page' style="width:800px; " />
+   <p>Notes List Page </p>
+  <img src="screenshots/Screenshot (303).png" alt="Notes List Page " title ='Notes List Page' style="width:800px; " />
+   <p>Create Notes Page</p>
+  <img src="screenshots/Screenshot (304).png" alt="Create Notes Page" title ='Create Notes Page' style="width:800px; " />
+   <p> Edit Note Page 1</p>
+  <img src="screenshots/Screenshot (305).png" alt="Edit Note Page 1" title =' Edit Note Page 1' style="width:800px; " />
+   <p> Edit Note Page 2 (light mode) </p>
+  <img src="screenshots/Screenshot (306).png" alt="Edit Note Page 2 (light mode)" title ='Edit Note Page 2 (light mode)e' style="width:800px; " />
+   <p> Contact Us Page </p>
+  <img src="screenshots/Screenshot (307).png" alt="Contact Us Page" title ='Contact Us Page' style="width:800px; " />
+
 
