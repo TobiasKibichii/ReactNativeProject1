@@ -25,6 +25,10 @@ The app emphasizes simplicity, performance, and offline reliability through pers
   <li>🧭 Dynamic Navigation — Navigate between list, detail, and edit screens.</li>
 </ul>
 
+
+<p> <strong>🎥 Demo Video </strong> </p>
+<p><a href="https://youtu.be/CYazejAiaDI">YouTube Link</a></p>
+
 <p><strong>🖼️ Screenshots</strong></p>
 
    <p>Home Page </p>
